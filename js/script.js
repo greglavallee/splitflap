@@ -43,13 +43,17 @@ $(document).ready(function(){
 
 	function getNextPerson(){
 		var presenters = localStorage.getItem('presenters');
-		if(presenters && presenters.length > 0){
+		if(presenters){
 			presenters = JSON.parse(presenters);
 		} else {
 			presenters = initialPresenters;
 		}
 		
 		var whoIsLeft = presenters.filter(function(presenter){return !presenter.presented});
+		if(whoIsLeft.length === 0){
+			localStorage.clear();
+			return disp.splitflap("value", padStr("fin"));
+		}
 		var nextIndex = getRandomFromArray(whoIsLeft);
 		whoIsLeft[nextIndex].presented = true;
 		var nextName = whoIsLeft[nextIndex]['fname'];
