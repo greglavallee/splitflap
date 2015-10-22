@@ -85,6 +85,19 @@ $(document).ready(function(){
 		var right = diff - left;
 		return padChar.repeat(left) + str + padChar.repeat(right);
 		
+
 	}
+	
+	
+	$('#resetIt').on('click', function(e){
+		
+		var sure = confirm("You sure?");	
+
+		if(sure){
+			localStorage.clear();
+				disp.splitflap("value", "");
+		}
+		
+	});
 
 });
